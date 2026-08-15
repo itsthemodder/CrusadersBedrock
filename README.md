@@ -1,5 +1,7 @@
 ⚔️ CRUSADER'S MOD | Minecraft Bedrock
 
+https://itsthemodder.github.io/CrusadersBedrock/#getting-started
+
 A massive Bedrock addon packed with custom mechanics, machines, events, pets, abilities and more.
 
 🌿 SEASONS
