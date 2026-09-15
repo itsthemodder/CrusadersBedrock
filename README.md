@@ -4,6 +4,9 @@ https://itsthemodder.github.io/CrusadersBedrock/#getting-started
 
 A massive Bedrock addon packed with custom mechanics, machines, events, pets, abilities and more.
 
+You can turn Any of these features off by this website
+https://itsthemodder.github.io/CB-Costomiser/
+
 🌿 SEASONS
 The world changes every 5 Minecraft days:
 • Spring: Normal gameplay
