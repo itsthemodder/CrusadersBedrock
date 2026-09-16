@@ -202,6 +202,31 @@
     #menu-toggle:checked ~ .menu-toggle-btn .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
   }
 
+  /* ---------- Scroll progress + back-to-top ---------- */
+  #scroll-progress{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--gold-dim), var(--gold), var(--ember-bright));
+    z-index:95; transition:width .1s linear;
+    pointer-events:none;
+  }
+  .to-top-btn{
+    position:fixed; bottom:20px; right:16px; z-index:90;
+    width:44px; height:44px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(255,255,255,0.28);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px) saturate(140%);
+    -webkit-backdrop-filter:blur(10px) saturate(140%);
+    box-shadow:0 4px 18px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.18);
+    color:var(--gold); cursor:pointer;
+    opacity:0; transform:translateY(10px);
+    pointer-events:none;
+    transition: opacity .3s ease, transform .3s ease, background .2s ease;
+  }
+  .to-top-btn.visible{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  .to-top-btn:hover{ background:rgba(255,255,255,0.16); }
+  .to-top-btn svg{ width:18px; height:18px; }
+
   /* ---------- Background cycle button + video layer ---------- */
   #bg-video{
     position:fixed; inset:0;
@@ -274,14 +299,27 @@
     pointer-events:none;
     z-index:1;
   }
+  /* "Fit" by David Jonathan Ross (djr.com/fit) is a paid, commercial variable
+     font, and it isn't on Google Fonts or any free CDN. This @font-face expects
+     a licensed, self-hosted file at fonts/Fit-Variable.woff2; until that file
+     is added, the browser silently falls through to the fallback stack below. */
+  @font-face{
+    font-family:'Fit';
+    src: url('fonts/Fit-Variable.woff2') format('woff2-variations'),
+         url('fonts/Fit-Variable.woff2') format('woff2');
+    font-weight: 1 1000;
+    font-stretch: 25% 400%;
+    font-display: swap;
+  }
   .hero .eyebrow{
     font-family:'JetBrains Mono', monospace; color:var(--ember-bright);
     font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase;
     margin-bottom:14px; position:relative; z-index:2;
   }
   .hero h1{
-    font-family:'Cinzel', serif; font-weight:900;
-    font-size:clamp(2.2rem, 5vw, 3.6rem);
+    font-family:'Fit', 'Cinzel', serif; font-weight:900;
+    font-size:clamp(1.6rem, 7vw, 3.6rem);
+    letter-spacing:0.01em;
     margin:0 0 16px; color:var(--gold);
     text-shadow: 0 0 24px rgba(201,162,75,0.25);
     position:relative; z-index:2;
@@ -601,11 +639,20 @@
   <span class="bar"></span><span class="bar"></span><span class="bar"></span>
 </label>
 
+<div id="scroll-progress"></div>
+
 <video id="bg-video" muted loop playsinline aria-hidden="true"></video>
 <button id="bg-cycle-btn" class="cycle-btn" type="button" aria-label="Cycle background style (currently: default)" title="Cycle background">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M21 12a9 9 0 1 1-2.64-6.36"></path>
     <polyline points="21 3 21 9 15 9"></polyline>
+  </svg>
+</button>
+
+<button id="to-top-btn" class="to-top-btn" type="button" aria-label="Back to top" title="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="19" x2="12" y2="5"></line>
+    <polyline points="5 12 12 5 19 12"></polyline>
   </svg>
 </button>
 
@@ -1222,6 +1269,196 @@
           <li>Shell is consumed.</li>
         </ol>
       </div>
+
+      <h3>All Abilities</h3>
+      <p class="muted">Every ability script in the mod, condensed:</p>
+
+      <div class="accordion-item">
+        <details>
+          <summary><span>First Join Setup <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">START.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>First join welcome GUI. Sets base gamerules, gives a temporary item, and opens a custom block info menu (Impulse, Inverse Impulse, Block Placer, Teleporter).</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Admin Item Menus <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">Czech.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Item-triggered admin menus: creeper head (teleport, spawn, gamerules, reset), operator clock (run any command), compass (teleport, weather, dash).</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Remote Detonator <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">detonator.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Stone button used as a remote detonator trigger.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Compass Teleport <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">Teleport.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Recovery Compass opens a UI to teleport the player.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Casino Block <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">cassino.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Gambling minigame block. Pay a cost item, get a random reward from a pool.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Custom Redstone Blocks <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">costomblocks.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Logic for the four custom redstone blocks: Impulse, Inverse Impulse, Entity Teleporter, and Block Placer.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Timeout System <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">timeout.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Punishment/timeout system. Freezes a player at a location and tracks their original position via tags.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Villager Names <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">PERSONALITY.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Randomizes villager name tags on spawn from a large name pool.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>WorldEdit Tool <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">WorldEdit.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>WorldEdit-style tool (wooden axe). Set pos1/pos2, fill regions, and quick-pick a block palette. Admin only.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Homes &amp; Warps <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">Warps.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Homes, back, TPA, and player stats system. Homes double as lodestone waypoints.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Bone Golem Cleanup <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">cleanup.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Converts a killed "bone golem" pet entity back into its spawn egg item.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Starter Kit <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">Kit.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Spawns a floating glass platform and starter kit structure on first join.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Magnet Hoe <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">stone_hoe.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Turns a stone hoe into an adjustable magnet/repulsor, with a strength meter shown on the action bar.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Bound Scroll <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">scroll.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Binds a command to a paper scroll by combining it with a lodestone block.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Food Healing <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">heal.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Java-style food regeneration. Extra healing per food type, for vanilla parity.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Life System <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">LIVES.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Off by default, toggle it on through the customizer website. Lose all your lives and you go into spectator mode until revived via beacon.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Stonecutter Tool <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">STONECUTTER.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Large custom block-shape/fill tool that uses iron and gold blocks as currency. GUI driven.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Auto Rail Placer <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">Railplacer.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Auto-places rail (and spaced torches) as the player walks or rides.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Carry Blocks &amp; Mobs <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">carry.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Lets players "carry" certain blocks and mobs, with a cooldown-limited pickup sound and message.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Java-Style Observers <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">java_notblock.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Right-clicking red nether brick, when not sneaking, can be observed by an observer like in Java Edition.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Tree Capitator <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">treeCap.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Axe tree capitator. Breaking one log instantly fells and collects the whole tree.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Grapple Hook <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">grappleSys.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>A named "grapple" sword and arrow that act as a grappling hook.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Death Graves <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">grave.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Player death creates a temporary "soul chest" grave that despawns after an hour.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Mob Catching <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">pokemon.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Golden hoe: damaging a mob at player level 5+ has a chance to give that mob's spawn egg. A catching mechanic.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Real Fireball <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">fireball.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Fire Charge item throws a real fireball projectile, like a ghast.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Season Cycle <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">seasons.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Five-season cycle system with per-season weather, effects, and announcements.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Block Turning <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">turn.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Copper hoe lets players rotate and move placed blocks.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Custom Potions <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">costompotions.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Custom potion-effect crafting block. Adds effects to potions and weapons using glowstone dust.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Auto Offhand Equip <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">rightequip.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Auto-swaps specific items (totem, shield, nautilus shell, and more) to the offhand when used, with a set of dupe-trigger items.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Bow Hit Sound <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">bow_ding.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Plays a "ding" sound when a player's arrow hits an entity.</p></div>
+        </details>
+      </div>
+      <div class="accordion-item">
+        <details>
+          <summary><span>Leaf Interactions <span class="mono" style="font-size:0.72rem;color:var(--text-dim);">leaves.js</span></span><span class="chev">&rsaquo;</span></summary>
+          <div class="accordion-body"><p>Custom behavior tied to interacting with leaf blocks.</p></div>
+        </details>
+      </div>
     </section>
 
     <section id="commands" class="reveal bg-wash bg-green">
@@ -1519,6 +1756,28 @@
 <noscript><style>.reveal, .hero{ opacity:1 !important; transform:none !important; }</style></noscript>
 
 <script>
+  // ---------- Scroll progress bar + back-to-top button ----------
+  (function(){
+    var bar = document.getElementById('scroll-progress');
+    var topBtn = document.getElementById('to-top-btn');
+    if (!bar || !topBtn) return;
+
+    function onScroll(){
+      var doc = document.documentElement;
+      var scrollTop = window.scrollY || doc.scrollTop;
+      var max = (doc.scrollHeight - doc.clientHeight) || 1;
+      var pct = Math.min(100, Math.max(0, (scrollTop / max) * 100));
+      bar.style.width = pct + '%';
+      topBtn.classList.toggle('visible', scrollTop > 400);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    topBtn.addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+
   // ---------- Background cycle button: state 0 = default page, states 1-6 = video backgrounds ----------
   (function(){
     var video = document.getElementById('bg-video');
