@@ -1,8 +1,12 @@
 CRUSADERLY'S MOD | Minecraft Bedrock
 
-🔗 Website: https://itsthemodder.github.io/CrusadersBedrock/
+🔗 Website: 
+https://itsthemodder.github.io/CrusadersBedrock/
+
 ⚙️ Customiser: https://itsthemodder.github.io/CB-Costomiser/
+
 (I'll put some icons so y'all can concentrate:)
+
 A massive addon featuring custom mechanics, machines, pets, abilities, events and more!
 
 🌿 Seasons
