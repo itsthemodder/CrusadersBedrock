@@ -6,7 +6,7 @@ https://itsthemodder.github.io/CrusadersBedrock/
 ⚙️ Customiser: https://itsthemodder.github.io/CB-Costomiser/
 
 (a little thing to know is if you are minecraft version 26.40 and below use 
-v220 with Res12 BUT IF you are on latest versions of above just download the newest res&Behind or just use my website to get the newest version of [.MCADDON] diretcly)
+BEHv220 with Res12 BUT IF you are on latest versions of above just download the newest [res & Beh] or just use my website to get the newest version of [.MCADDON] directly)
 
 (I'll put some icons so y'all can concentrate:)
 
@@ -42,6 +42,7 @@ Crusader Shell teleportation, Teleport Book, Teleporter Book and more.
 📖 In-Game Guide
 Explore features, blocks, pets, abilities, items, changelogs and experimental utilities.
 
-⚔️ CRUSADER'S MOD
-Minecraft Bedrock Edition | Built with "@minecraft/server"
+CRUSADER'S MOD
+Minecraft Bedrock Edition 
+| Built with "@minecraft/server"
 Made by @Crusadery on YouTube
