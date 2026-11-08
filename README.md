@@ -5,6 +5,9 @@ https://itsthemodder.github.io/CrusadersBedrock/
 
 ⚙️ Customiser: https://itsthemodder.github.io/CB-Costomiser/
 
+(a little thing to know is if you are minecraft version 26.40 and below use 
+v220 with Res12 BUT IF you are on latest versions of above just download the newest res&Behind or just use my website to get the newest version of [.MCADDON] diretcly)
+
 (I'll put some icons so y'all can concentrate:)
 
 A massive addon featuring custom mechanics, machines, pets, abilities, events and more!
